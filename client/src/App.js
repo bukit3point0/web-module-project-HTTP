@@ -33,7 +33,7 @@ const App = (props) => {
     axios.delete(`http://localhost:5000/api/movies/${id}`)
     .then(res => {
       console.log(res.data)
-      setMovies(movies)
+      setMovies(movies.filter(movie=> (movie.id != Number(id))))
       push('/movies')
     })
     .catch(err => {
@@ -58,11 +58,11 @@ const App = (props) => {
         
           <Switch>
             <Route path="/movies/edit/:id">
-              <EditMovieForm/>
+              <EditMovieForm setMovies={setMovies}/>
             </Route>
 
             <Route path='/movies/add-movie'>
-              <AddMovieForm/>
+              <AddMovieForm setMovies={setMovies}/>
             </Route>
 
             <Route path="/movies/:id">

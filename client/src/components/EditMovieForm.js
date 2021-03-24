@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+import MovieList from './MovieList';
 
 const EditMovieForm = (props) => {
 	const { push } = useHistory();
@@ -38,8 +39,12 @@ const EditMovieForm = (props) => {
         e.preventDefault();
 		axios.put(`http://localhost:5000/api/movies/${id}`, movie)
 		.then(res => {
-			console.log(res.data)
-			setMovie(res.data)
+			axios.get(`http://localhost:5000/api/movies`)
+			.then(res => {
+				console.log(res.data)
+				props.setMovies(res.data)
+			})
+			
 			push(`/movies/${id}`)
 		})
 		.catch(err => {
