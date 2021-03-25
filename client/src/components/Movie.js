@@ -21,8 +21,12 @@ const Movie = (props) => {
             })
     }, [id]);
 
-    const deleteClick = e => {
+    const deleteClick = () => {
         props.deleteMovie(id)
+    }
+
+    const favoriteClick = e => {
+        addToFavorites(movie)
     }
 
     return(<div className="modal-page col">
@@ -56,6 +60,7 @@ const Movie = (props) => {
                         <section>
                             <span 
                                 className="m-2 btn btn-dark"
+                                onClick={favoriteClick}
                             >
                                 Favorite
                             </span>

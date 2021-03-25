@@ -40,9 +40,9 @@ const EditMovieForm = (props) => {
 		axios.put(`http://localhost:5000/api/movies/${id}`, movie)
 		.then(res => {
 			axios.get(`http://localhost:5000/api/movies`)
-			.then(res => {
-				console.log(res.data)
-				props.setMovies(res.data)
+			.then(response => {
+				console.log(response.data)
+				props.setMovies(response.data)
 			})
 			
 			push(`/movies/${id}`)
